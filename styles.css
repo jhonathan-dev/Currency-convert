@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: #8a8a8a;
+}
+
+.logo-image {
+  width: 300px;
+  display: block;
+  margin: 40px auto;
+}
+
+main {
+  background: #f4f4f4;
+  display: block;
+  margin: auto;
+  margin-bottom: 30px;
+  width: 375px;
+  opacity: 1;
+  border-radius: 20px;
+  padding: 24px 44px;
+}
+
+label {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #777777;
+}
+
+select {
+  width: 100%;
+  height: 50px;
+  appearance: none;
+  top: 164px;
+  left: 24px;
+  opacity: 1;
+  border-radius: 4px;
+  border-width: 1px;
+  padding-left: 18px;
+  margin-top: 5px;
+  margin-bottom: 24px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: rgba(85, 85, 85, 1);
+  cursor: pointer;
+}
+
+option {
+  opacity: 0.6;
+  margin-left: 30px;
+}
+
+input {
+  width: 100%;
+  height: 50px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding-left: 18px;
+  opacity: 1;
+  border-radius: 4px;
+  border-width: 1px;
+  cursor: pointer;
+}
+
+input::placeholder {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  opacity: 0.6;
+}
+
+.convert-button {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  width: 100%;
+  height: 50px;
+  opacity: 1;
+  border: none;
+  border-radius: 5px;
+  background-color: #345574;
+  color: #f4f4f4;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+button:active {
+  opacity: 0.5;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  width: 100%;
+  opacity: 1;
+  border-radius: 20px;
+  margin-top: 30px;
+  border: 1px solid rgba(106, 139, 180, 1);
+}
+
+.currency-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.currency {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(119, 119, 119, 1);
+}
+
+.currency-value {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 18px;
+}
+
+.arrow-image {
+  width: 35px;
+  opacity: 1;
+  margin: 15px 0;
+}
