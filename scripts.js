@@ -115,6 +115,11 @@ function convertValue() {
 
   /* 
   conferindo se a moeda a ser convetida é o real: */
+  if((controlCurrencyToConvert == controlCurrencyConverted) ){
+    alert("As moedas selecionadas para serem convertidas são iguais!")
+    
+  }
+
   if (controlCurrencyToConvert == "r") {
     valueToConvert.innerHTML = new Intl.NumberFormat("pt-BR", {
       style: "currency",

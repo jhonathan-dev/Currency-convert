@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #a5a5a5;
+  background-color: #006f1a;
 }
 
 .logo-image {
@@ -94,13 +94,16 @@ input::placeholder {
   opacity: 1;
   border: none;
   border-radius: 5px;
-  background-color: #345574;
+  background-color: #28a417;
   color: #f4f4f4;
   cursor: pointer;
+  transition: 0.5s;
 }
 
 button:hover {
-  opacity: 0.8;
+  scale: 1.1;
+  background-color: #006f1a;
+
 }
 button:active {
   opacity: 0.5;
