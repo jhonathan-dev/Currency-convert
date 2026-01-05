@@ -11,7 +11,18 @@ const valueToConvert = document.querySelector("#value-to-convert");
 
 let dolarToday = 0;
 let euroToday = 0;
+let libraToday = 0;
 
+/* função para pegar o valor da libra sempre atualizado:*/
+
+async function getLibra() {
+  const url = "https://api.exchangerate-api.com/v4/latest/BRL";
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  libraToday = data.rates.GBP; // taxa BRL → GBP
+}
 /* função para pegar o valor do dolar sempre atualizado:*/
 
 async function getDolar() {
@@ -19,11 +30,11 @@ async function getDolar() {
     "https://economia.awesomeapi.com.br/json/last/USD-BRL"
   );
   const data = await response.json();
-  dolarToday = data.USDBRL.bid;
-  return Number(data.USDBRL.bid);
+  dolarToday = Number(data.USDBRL.bid);
+  /*   return Number(data.USDBRL.bid); */
 }
 
-/* função para pegar o valor do dolar sempre atualizado:*/
+/* função para pegar o valor do euro sempre atualizado:*/
 
 async function getEuro() {
   const response = await fetch(
@@ -35,6 +46,7 @@ async function getEuro() {
 
 /* Chamando as funções para pegar esses valores:*/
 
+getLibra();
 getDolar();
 getEuro();
 
@@ -79,6 +91,15 @@ function changeCurrencyToConvertName() {
       currency: "EUR",
     }).format(controlValue);
   }
+  if (selectCurrencyToConvert.value == "libra") {
+    nameCurrencyToConvert.innerHTML = "Libra";
+    imgCurrencyToConvert.src = "./assets/libra.png";
+    controlCurrencyToConvert = "l";
+    valueToConvert.innerHTML = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "GBP",
+    }).format(controlValue);
+  }
   convertValue();
 }
 
@@ -104,6 +125,11 @@ function changeCurrencyName() {
     imageCurrency.src = "./assets/Euro.png";
     controlCurrencyConverted = "e";
   }
+  if (selectCurrency.value == "libra") {
+    currencyConvertedName.innerHTML = "Libra";
+    imageCurrency.src = "./assets/libra.png";
+    controlCurrencyConverted = "l";
+  }
   convertValue();
 }
 
@@ -115,9 +141,8 @@ function convertValue() {
 
   /* 
   conferindo se a moeda a ser convetida é o real: */
-  if((controlCurrencyToConvert == controlCurrencyConverted) ){
-    alert("As moedas selecionadas para serem convertidas são iguais!")
-    
+  if (controlCurrencyToConvert == controlCurrencyConverted) {
+    alert("As moedas selecionadas para serem convertidas são iguais!");
   }
 
   if (controlCurrencyToConvert == "r") {
@@ -143,6 +168,13 @@ function convertValue() {
         currency: "USD",
       }).format(convertedCurrency);
     }
+    if (controlCurrencyConverted == "l") {
+      const convertedCurrency = inputCurrencyValue * libraToday;
+      valueConverted.innerHTML = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "GBP",
+      }).format(convertedCurrency);
+    }
     if (controlCurrencyConverted == "e") {
       const convertedCurrency = inputCurrencyValue / euroToday;
       valueConverted.innerHTML = new Intl.NumberFormat("en-US", {
@@ -154,6 +186,7 @@ function convertValue() {
 
   /* 
   Conferindo se a moeda a ser convetida é o Dolar: */
+
   if (controlCurrencyToConvert == "d") {
     valueToConvert.innerHTML = new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -177,7 +210,13 @@ function convertValue() {
         currency: "BRL",
       }).format(convertedCurrency);
     }
-
+    if (controlCurrencyConverted == "l") {
+      const convertedCurrency = inputCurrencyValue * 0.79;
+      valueConverted.innerHTML = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "GBP",
+      }).format(convertedCurrency);
+    }
     if (controlCurrencyConverted == "e") {
       const convertedCurrency = inputCurrencyValue * 0.85;
       valueConverted.innerHTML = new Intl.NumberFormat("en-US", {
@@ -210,12 +249,57 @@ function convertValue() {
         currency: "BRL",
       }).format(convertedCurrency);
     }
-
     if (controlCurrencyConverted == "d") {
       const convertedCurrency = inputCurrencyValue * 1.17;
       valueConverted.innerHTML = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
+      }).format(convertedCurrency);
+    }
+    if (controlCurrencyConverted == "l") {
+      const convertedCurrency = inputCurrencyValue * 0.87;
+      valueConverted.innerHTML = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "GBP",
+      }).format(convertedCurrency);
+    }
+  }
+
+  /* 
+  conferindo se a moeda a ser convetida é a Libra: */
+
+  if (controlCurrencyToConvert == "l") {
+    valueToConvert.innerHTML = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "GBP",
+    }).format(inputCurrencyValue);
+
+    if (controlCurrencyConverted == "l") {
+      const convertedCurrency = inputCurrencyValue;
+      valueConverted.innerHTML = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "GBP",
+      }).format(convertedCurrency);
+    }
+    if (controlCurrencyConverted == "r") {
+      const convertedCurrency = inputCurrencyValue / libraToday;
+      valueConverted.innerHTML = new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(convertedCurrency);
+    }
+    if (controlCurrencyConverted == "d") {
+      const convertedCurrency = inputCurrencyValue * 1.35;
+      valueConverted.innerHTML = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(convertedCurrency);
+    }
+    if (controlCurrencyConverted == "e") {
+      const convertedCurrency = inputCurrencyValue * 1.16;
+      valueConverted.innerHTML = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "EUR",
       }).format(convertedCurrency);
     }
   }
